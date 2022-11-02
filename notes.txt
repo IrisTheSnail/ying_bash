@@ -1,0 +1,19 @@
+for the time being : 
+	prayer_kind : (ssob7, ddhor, l3assr, lmghrob, l3cha)
+	time/date
+	state : (done 🟩, done kharij w9tha 🟥, machi done ⬜)
+	id, for counting ch7al mn sla... why not?
+    
+    
+    
+    
+    
+    
+        MONTH   :   NOVEMBER
+        
+day    _12__________________________________________________________________________
+ssob7  |🟩
+ddhor  |  🟩
+l3assr |
+lmghrob|
+l3cha  | 
