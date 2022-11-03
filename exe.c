@@ -1,20 +1,24 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <sys/ioctl.h>
+#include <unistd.h>
 #include "chadstr.h"
 
 int main(int argc, char * argv[]) {
 
-	system("printf '\e[48;5;022m\033[39m'");
+	struct winsize w;//w.ws_col
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
 	//chadstr On_Green = str("\033[42m\]");
 	//SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),BACKGROUND_INTENSITY|BACKGROUND_RED);
-	chadstr coo = str(str("MOIS:"), str(atoi(argv[1]), "\n"), str("\n"));
-	printf(str(*coo));
+	chadstr coo = str(str("\e[48;5;022mMOIS     :     "), str(atoi(argv[1])), str("\x1B[K\n") );
 
-	for (int i = 1; i <= 30; i++){
-      	printf("%d|", i);
-      	
+	for (int i = 1; i <= w.ws_col; i++){
+      	printf("\e[48;5;022m ");      	
     }
-    system("pwd");
+    
+	printf(str(*coo));
+    
 	printf("\n");
+
 	return 0;
 }
