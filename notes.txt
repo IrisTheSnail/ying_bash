@@ -20,3 +20,10 @@ l3cha  |
 
 colors : 
 	green (base) : \e[48;5;022m
+
+
+...y9d y3ti l util mn fo9ach....
+
+ex : salat september 2022
+
+...the database? wlla l frontend?
