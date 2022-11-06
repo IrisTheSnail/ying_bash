@@ -5,19 +5,51 @@
 #include <sqlite3.h>
 #include "chadstr.h"
 
+void callback();
+
 int openyyy(){
 	sqlite3 *db;
-   	
+	char *zErrMsg = 0;
    	int rc;
-
    	rc = sqlite3_open("test.db", &db);
-
    	if( rc ) {
       	fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
       	return(0);
    	} else {
       	fprintf(stderr, "Opened database successfully\n");
+      	
    	}
+	//i don't remember this db shit well so it s time to test stuff
+	//ghadi tdor kssayd haha
+
+	char *sql = "CREATE TABLE salats( \
+	   		ID INTEGER NOT NULL, \
+	   		type VARCHAR(10), \
+	   		datetime INTEGER NOT NULL, \
+	   		state VARCHAR(20), \
+	   		PRIMARY KEY( ID ), \
+	   		CONSTRAINT which_type FOREIGN KEY (type) \
+	   		REFERENCES types(name) \
+	   		CONSTRAINT which_state FOREIGN KEY (state) \
+	   		REFERENCES states(name) \
+	   		); \
+	   	CREATE TABLE types ( \
+	   	    name VARCHAR(10) NOT NULL, \
+	   	    PRIMARY KEY (name) \
+			); \
+		CREATE TABLE states ( \
+			name VARCHAR(20) NOT NULL, \
+	   	    PRIMARY KEY (name) \
+			); \
+		COMMIT;";
+   	rc = sqlite3_exec(db, sql, callback, &zErrMsg);
+   	   
+   	   if( rc != SQLITE_OK ){
+   	      fprintf(stderr, "SQL error: %s\n", zErrMsg);
+   	      sqlite3_free(zErrMsg);
+   	   } else {
+   	      fprintf(stdout, "haha it s ficking there!!\n");
+   	   }
    	sqlite3_close(db);
 }
 
