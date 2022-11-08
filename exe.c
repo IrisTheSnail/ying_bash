@@ -7,6 +7,7 @@
 
 void callback();
 
+
 int openyyy(){
 	sqlite3 *db;
 	char *zErrMsg = 0;
