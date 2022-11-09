@@ -5,8 +5,8 @@
 #include <sqlite3.h>
 #include "chadstr.h"
 
-void callback();
-
+//From the SQLite manual:
+#define ERRCHECK {if (err!=NULL) {printf("%s\n",err); sqlite3_free(err);  return 0;}}
 
 int openyyy(){
 	sqlite3 *db;
@@ -42,8 +42,10 @@ int openyyy(){
 			name VARCHAR(20) NOT NULL, \
 	   	    PRIMARY KEY (name) \
 			); \
-		COMMIT;";
-   	rc = sqlite3_exec(db, sql, callback, &zErrMsg);
+		COMMIT;";//will give you an error when u commit twice bc u wanna be sure...
+		
+
+   	rc = sqlite3_exec(db, sql, 0, 0,  &zErrMsg);
    	   
    	   if( rc != SQLITE_OK ){
    	      fprintf(stderr, "SQL error: %s\n", zErrMsg);
@@ -58,6 +60,7 @@ int main(int argc, char * argv[]) {
 
 	struct winsize w;//w.ws_col
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &w);
+	printf("hello\n");
 	//chadstr On_Green = str("\033[42m\]");
 	//SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),BACKGROUND_INTENSITY|BACKGROUND_RED);
 	chadstr coo = str(str("\e[48;5;022m  "), str(atoi(argv[1])), str("\x1B[K\n") );
@@ -65,8 +68,8 @@ int main(int argc, char * argv[]) {
 	for (int i = 1; i <= w.ws_col; i++){
       	printf("\e[48;5;022m ");
     }
-
-	printf(str(*coo));
+	
+	printf("%s",str( *coo));
 	int cc = (w.ws_col/3);
 	if(atoi(argv[2]) >= cc){
 		for(int j = 1 ; j <= atoi(argv[2]) ; j++){
@@ -79,5 +82,3 @@ int main(int argc, char * argv[]) {
 	openyyy();
 	return 0;
 }
-
-
