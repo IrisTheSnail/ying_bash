@@ -43,8 +43,8 @@ int openyyy(){
 	   	    PRIMARY KEY (name) \
 			); \
 		COMMIT;";//will give you an error when u commit twice bc u wanna be sure...
-		
 
+		
    	rc = sqlite3_exec(db, sql, 0, 0,  &zErrMsg);
    	   
    	   if( rc != SQLITE_OK ){
@@ -79,6 +79,8 @@ int main(int argc, char * argv[]) {
     }
 	printf("\n");
 
-	openyyy();
+	//openyyy();
+
+	
 	return 0;
 }
